@@ -4,10 +4,16 @@ RUN apk add --no-cache \
     bash \
     git \
     wget \
+    autoconf \
+    g++ \
+    make \
     zlib-dev
 
 RUN docker-php-ext-install \
     zip
+
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
 
 # Composer
 COPY install-composer.sh /usr/local/bin/install-composer.sh
